@@ -1,0 +1,127 @@
+---
+title: 'Practical Machine Learning: Course Project</br> Prediction Assignment Writeup'
+author: "Dipankar"
+date: "14 September 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Executive Summary
+
+By means of devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to assemble a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants.
+
+Six young health participants were asked to perform one set of 10 repetitions of the Unilateral Dumbbell Biceps Curl in five different fashions: exactly according to the specification (Class A), throwing the elbows to the front (Class B), lifting the dumbbell only halfway (Class C), lowering the dumbbell only halfway (Class D) and throwing the hips to the front (Class E).
+
+The training dataset was separated into two parts: tranining part (70%), testing part (20%)i.e. for the validations.
+
+The training model developed using Random Forest was able to achieve over 99.73% accuracy, or less than 0.03% out-of-sample error, and was able to predict the 20 test cases with 100% accuracy.
+
+The test and training data as follows :-
+
+The training data for this project are available [here](https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv).
+
+The test data are available [here](https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv).
+
+###Processing & Cleaning of data
+
+
+```{r cache=TRUE, warning=FALSE}
+#Environment Preparation
+setwd("E:/coussera/Practical Machine Learning/week4/assignment")
+library(knitr);library(caret);library(rpart); library(rpart.plot); library(rattle); library(randomForest); library(corrplot); 
+set.seed(10000)
+
+#Read the Dataset.
+# download the datasets
+training <- read.csv("pml-training.csv")
+testing  <- read.csv("pml-testing.csv")
+
+# create a partition with the training dataset 
+inTrain  <- createDataPartition(training$classe, p=0.7, list=FALSE)
+TrainSet <- training[inTrain, ]
+TestSet  <- training[-inTrain, ]
+
+# remove variables with Nearly Zero Variance
+NZV <- nearZeroVar(TrainSet)
+TrainSet <- TrainSet[, -NZV]
+TestSet  <- TestSet[, -NZV]
+
+# remove variables that are mostly NA
+AllNA    <- sapply(TrainSet, function(x) mean(is.na(x))) > 0.95
+TrainSet <- TrainSet[, AllNA==FALSE]
+TestSet  <- TestSet[, AllNA==FALSE]
+
+# remove identification only variables (columns 1 to 5)
+TrainSet <- TrainSet[, -(1:5)]
+TestSet  <- TestSet[, -(1:5)]
+```
+###Model Prediction
+####Decision Trees
+
+```{r cache=TRUE, warning=FALSE}
+# model-fit
+set.seed(10000)
+modFitDecTree <- rpart(classe ~ ., data=TrainSet, method="class")
+fancyRpartPlot(modFitDecTree)
+
+# prediction - Test dataset
+predictDecTree <- predict(modFitDecTree, newdata=TestSet, type="class")
+confMatDecTree <- confusionMatrix(predictDecTree, TestSet$classe)
+confMatDecTree
+```
+The accuracy of decision tree by rpart method is 73.4%, which is quiet low.
+
+####Boosted Model
+```{r cache=TRUE, warning=FALSE}
+# model-fit
+set.seed(10000)
+controlGBM <- trainControl(method = "repeatedcv", number = 5, repeats = 1)
+modFitGBM  <- train(classe ~ ., data=TrainSet, method = "gbm",
+                    trControl = controlGBM, verbose = FALSE)
+modFitGBM$finalModel
+
+# prediction - dataset
+predictGBM <- predict(modFitGBM, newdata=TestSet)
+confMatGBM <- confusionMatrix(predictGBM, TestSet$classe)
+confMatGBM
+
+```
+The accuracy of boosted model by gbm method is 98.3 %, which is higher.
+
+####Random Forest
+```{r cache=TRUE, warning=FALSE}
+# model fit
+set.seed(10000)
+controlRF <- trainControl(method="cv", number=3, verboseIter=FALSE)
+modFitRandForest <- train(classe ~ ., data=TrainSet, method="rf",
+                          trControl=controlRF)
+modFitRandForest$finalModel
+```
+Here the error is 0.23 % which is less than 0.5 %.
+```{r cache=TRUE, warning=FALSE}
+# prediction on Test dataset
+predictRandForest <- predict(modFitRandForest, newdata=TestSet)
+confMatRandForest <- confusionMatrix(predictRandForest, TestSet$classe)
+confMatRandForest
+```
+The accuracy of random forest model is 99.73 %, which is highest among all.
+
+###Testing Model
+```{r cache=TRUE, warning=FALSE}
+predictTEST <- predict(modFitRandForest, newdata=testing)
+predictTEST
+```
+In that case, the Random Forest model will be applied to predict the 20 quiz results (testing dataset) as shown above.
+
+##Conclusion
+In this study, the characteristics of predictors for both traning and testing datasets (train and test) are reduced. These characteristics are the percentage of NAs values, low variance, correlation and skewness. Therefore, the variables of the data sets are scaled. The training dataset is splitted into subtraining and validation parts to construct a predictive model and evaluate its accuracy. Decision Tree,Boosted Model and Random Forest are applied.The Random Forest is a much better predictive model than the Decision Tree, which has a larger accuracy (99.73 %).
+
+##Reproducible
+```{r cache=TRUE, warning=FALSE}
+sessionInfo()
+```
+
+
