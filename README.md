@@ -1,4 +1,4 @@
-# Practical-Machine-Learning
+# Practical Machine Learning
 ## Summary
 By means of devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to assemble a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants.
 
@@ -29,7 +29,9 @@ The test data are available [here](https://d396qusza40orc.cloudfront.net/predmac
       * prediction - Test dataset
    * Random Forest
       * model-fit
+      * sample error
       * prediction - Test dataset
+       
   3. Testing Model
   4. Conclusion
   5. Reproducible-
