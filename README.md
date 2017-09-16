@@ -14,22 +14,22 @@ The test data are available [here](https://d396qusza40orc.cloudfront.net/predmac
 
 ## Steps are as follows:-
 1. Processing & Cleaning of data.
-  a. Environment Preparation.
-  b. Download & Reading of the Dataset.
-  c. Create a partition with the training dataset
-  d. Remove variables with Nearly Zero Variance.
-  e. Remove variables that are mostly NA.
-  f. Remove identification only variables.
+  * Environment Preparation.
+  * Download & Reading of the Dataset.
+  * Create a partition with the training dataset
+  * Remove variables with Nearly Zero Variance.
+  * Remove variables that are mostly NA.
+  * Remove identification only variables.
 2. Model Prediction
-  -Decision Trees
-      *model-fit
-      *prediction - Test dataset
+  * Decision Trees
+      * model-fit
+      * prediction - Test dataset
   -Boosted Model
-      *model-fit
-      *prediction - Test dataset
+      * model-fit
+      * prediction - Test dataset
   -Random Forest
-      *model-fit
-      *prediction - Test dataset
+      * model-fit
+      * prediction - Test dataset
   3. Testing Model
   4. Conclusion
   5. Reproducible-
