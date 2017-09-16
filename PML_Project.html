@@ -305,7 +305,8 @@ modFitRandForest$finalModel</code></pre>
 ## C    0    6 2390    0    0 0.0025041736
 ## D    0    0    8 2243    1 0.0039964476
 ## E    0    0    0    4 2521 0.0015841584</code></pre>
-<p>Here the error is 0.23 % which is less than 0.5 %.</p>
+<pre><code># Checking error</code></pre>
+  <p>Here the error is 0.23 % which is less than 0.5 %.</p>
 <pre class="r"><code># prediction on Test dataset
 predictRandForest &lt;- predict(modFitRandForest, newdata=TestSet)
 confMatRandForest &lt;- confusionMatrix(predictRandForest, TestSet$classe)
