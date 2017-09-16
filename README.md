@@ -29,7 +29,7 @@ The test data are available [here](https://d396qusza40orc.cloudfront.net/predmac
       * prediction - Test dataset
    * Random Forest
       * model-fit
-      * sample error
+      * Checking error
       * prediction - Test dataset
        
   3. Testing Model
