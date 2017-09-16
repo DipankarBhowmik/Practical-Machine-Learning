@@ -24,10 +24,10 @@ The test data are available [here](https://d396qusza40orc.cloudfront.net/predmac
   * Decision Trees
       * model-fit
       * prediction - Test dataset
-  -Boosted Model
+  * Boosted Model
       * model-fit
       * prediction - Test dataset
-  -Random Forest
+  * Random Forest
       * model-fit
       * prediction - Test dataset
   3. Testing Model
