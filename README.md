@@ -34,7 +34,7 @@ The test data are available [here](https://d396qusza40orc.cloudfront.net/predmac
   4. Conclusion
   5. Reproducible-
   
-      * Session Information
+       -Session Information
       
         R version 3.4.0 (2017-04-21)
         Platform: x86_64-w64-mingw32/x64 (64-bit)
