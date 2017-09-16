@@ -100,6 +100,7 @@ modFitRandForest <- train(classe ~ ., data=TrainSet, method="rf",
                           trControl=controlRF)
 modFitRandForest$finalModel
 ```
+##### Checking error
 Here the error is 0.23 % which is less than 0.5 %.
 ```{r cache=TRUE, warning=FALSE}
 # prediction on Test dataset
