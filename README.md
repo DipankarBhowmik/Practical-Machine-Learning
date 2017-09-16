@@ -21,15 +21,15 @@ The test data are available [here](https://d396qusza40orc.cloudfront.net/predmac
   e. Remove variables that are mostly NA.
   f. Remove identification only variables.
 2. Model Prediction
-  a. Decision Trees
-      model-fit
-      prediction - Test dataset
-  b. Boosted Model
-      model-fit
-      prediction - Test dataset
-  c. Random Forest
-      model-fit
-      prediction - Test dataset
+  -Decision Trees
+      *model-fit
+      *prediction - Test dataset
+  -Boosted Model
+      *model-fit
+      *prediction - Test dataset
+  -Random Forest
+      *model-fit
+      *prediction - Test dataset
   3. Testing Model
   4. Conclusion
   5. Reproducible-
