@@ -14,27 +14,28 @@ The test data are available [here](https://d396qusza40orc.cloudfront.net/predmac
 
 ## Steps are as follows:-
 1. Processing & Cleaning of data.
-  * Environment Preparation.
-  * Download & Reading of the Dataset.
-  * Create a partition with the training dataset
-  * Remove variables with Nearly Zero Variance.
-  * Remove variables that are mostly NA.
-  * Remove identification only variables.
+   * Environment Preparation.
+   * Download & Reading of the Dataset.
+   * Create a partition with the training dataset
+   * Remove variables with Nearly Zero Variance.
+   * Remove variables that are mostly NA.
+   * Remove identification only variables.
 2. Model Prediction
-  * Decision Trees
+   * Decision Trees
       * model-fit
       * prediction - Test dataset
-  * Boosted Model
+   * Boosted Model
       * model-fit
       * prediction - Test dataset
-  * Random Forest
+   * Random Forest
       * model-fit
       * prediction - Test dataset
   3. Testing Model
   4. Conclusion
   5. Reproducible-
   
-      Session Information
+      * Session Information
+      
         R version 3.4.0 (2017-04-21)
         Platform: x86_64-w64-mingw32/x64 (64-bit)
         Running under: Windows 7 x64 (build 7601) Service Pack 1
